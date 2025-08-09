@@ -36,19 +36,35 @@ def new_note():
         content = input("Enter your note: ")
         file.write(content)
     
-    print(f"Note '{name_note}' saved successfully!")
+    print(f"Note '{name_note}' saved successfully!\n")
 
 def open_file():
     print(
         "+--------------------+\n" \
         "|      Open File     |\n" \
-        "+--------------------+\n"
+        "+--------------------+"
     )
 
-    
+
+    folder = "Files"
+    for file in os.listdir(folder):
+        print(file)
+
+
+    name_file = input("\nInput name file -> ")
+
+    while True:
+        if os.path.exists(os.path.abspath(os.path.join(folder, name_file))):
+            print(f"\nfile {name_file} , found")
+            break
+        else:
+            print(f"\nfile {name_file} , NOT found")
+
+            name_file = input("Input name file -> ")
+
+
 
     
-
 #---------PROCES-----------#
 
 while True:
