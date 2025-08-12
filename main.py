@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import os
 
 
@@ -53,8 +55,10 @@ def open_file():
 
     name_file = input("\nInput name file -> ")
 
+    file_path = Path(os.path.abspath(os.path.join(folder, name_file)))
+
     while True:
-        if os.path.exists(os.path.abspath(os.path.join(folder, name_file))):
+        if os.path.exists(file_path):
             print(f"\nfile {name_file} , found")
             break
         else:
@@ -62,7 +66,23 @@ def open_file():
 
             name_file = input("Input name file -> ")
 
-
+    file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+    while True:
+        if file_do == "r":
+            content = file_path.read_text(encoding='utf-8')
+            print("\n",content)
+            file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+        elif file_do == "q":
+            break
+        elif file_do == "w":
+            print("\nWrite a new text\n")
+            text = input("")
+            file_path.write_text(text, encoding='utf-8')
+            print("file rewrited!")
+            break
+        else:
+            print("Error, try again!")
+            file_do = input("\nr - read\nw - rewrite\n>>> ").lower()
 
     
 #---------PROCES-----------#
