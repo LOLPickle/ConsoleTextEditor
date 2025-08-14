@@ -53,36 +53,41 @@ def open_file():
         print(file)
 
 
-    name_file = input("\nInput name file -> ")
+    name_file = input("\nInput name file\nq - exit\n>>> ")
 
-    file_path = Path(os.path.abspath(os.path.join(folder, name_file)))
+    if name_file == 'q':
+        main()
+    else:
+        name_file += '.txt'
 
-    while True:
-        if os.path.exists(file_path):
-            print(f"\nfile {name_file} , found")
-            break
-        else:
-            print(f"\nfile {name_file} , NOT found")
+        file_path = Path(os.path.abspath(os.path.join(folder, name_file)))
 
-            name_file = input("Input name file -> ")
+        while True:
+            if os.path.exists(file_path):
+                print(f"\nfile {name_file} , found")
+                break
+            else:
+                print(f"\nfile {name_file} , NOT found")
 
-    file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
-    while True:
-        if file_do == "r":
-            content = file_path.read_text(encoding='utf-8')
-            print("\n",content)
-            file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
-        elif file_do == "q":
-            break
-        elif file_do == "w":
-            print("\nWrite a new text\n")
-            text = input("")
-            file_path.write_text(text, encoding='utf-8')
-            print("file rewrited!")
-            break
-        else:
-            print("Error, try again!")
-            file_do = input("\nr - read\nw - rewrite\n>>> ").lower()
+                name_file = input("Input name file -> ")
+
+        file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+        while True:
+            if file_do == "r":
+                content = file_path.read_text(encoding='utf-8')
+                print("\n",content)
+                file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+            elif file_do == "q":
+                break
+            elif file_do == "w":
+                print("\nWrite a new text\n")
+                text = input("")
+                file_path.write_text(text, encoding='utf-8')
+                print("file rewrited!")
+                break
+            else:
+                print("Error, try again!")
+                file_do = input("\nr - read\nw - rewrite\n>>> ").lower()
 
     
 #---------PROCES-----------#
