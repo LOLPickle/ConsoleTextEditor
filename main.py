@@ -1,9 +1,12 @@
 from pathlib import Path
-
+import time
 import os
 
 
 def main():
+
+    print("\033c", end="")  # ANSI escape code для очищення екрану
+
     print(
         "+--------------------+\n" 
         "|     Text Editor    |\n" 
@@ -41,6 +44,9 @@ def new_note():
     print(f"Note '{name_note}' saved successfully!\n")
 
 def open_file():
+
+    print("\033c", end="")  # ANSI escape code для очищення екрану
+
     print(
         "+--------------------+\n" \
         "|      Open File     |\n" \
@@ -54,24 +60,41 @@ def open_file():
 
 
     name_file = input("\nInput name file\nq - exit\n>>> ")
+    print("\033c", end="")  # ANSI escape code для очищення екрану
 
     if name_file == 'q':
-        main()
+        return
     else:
-        name_file += '.txt'
-
-        file_path = Path(os.path.abspath(os.path.join(folder, name_file)))
-
         while True:
+
+            name_file += '.txt'
+
+            file_path = Path(os.path.abspath(os.path.join(folder, name_file)))
+
             if os.path.exists(file_path):
                 print(f"\nfile {name_file} , found")
                 break
             else:
+                print(
+                    "+--------------------+\n" \
+                    "|      Open File     |\n" \
+                    "+--------------------+"
+                )
+
+                folder = "Files"
+                for file in os.listdir(folder):
+                    print(file)
+
                 print(f"\nfile {name_file} , NOT found")
 
-                name_file = input("Input name file -> ")
+                name_file = input("\nInput name file\nq - exit\n>>> ").lower()
+                print("\033c", end="")  # ANSI escape code для очищення екрану
+                if name_file == 'q': 
+                    return
+        
 
         file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+        print("\033c", end="")  # ANSI escape code для очищення екрану
         while True:
             if file_do == "r":
                 content = file_path.read_text(encoding='utf-8')
@@ -84,6 +107,7 @@ def open_file():
                 text = input("")
                 file_path.write_text(text, encoding='utf-8')
                 print("file rewrited!")
+                time.sleep(1)
                 break
             else:
                 print("Error, try again!")
