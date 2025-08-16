@@ -10,7 +10,7 @@ A simple Python console text editor -> TEXTER
 
 ✔️ Fix bugs
 
-- Adding a function to add text instead of just overwriting
+✔️ Adding a function to add text instead of just overwriting
 
 - Version PLUS whith UI
   
