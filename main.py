@@ -93,13 +93,13 @@ def open_file():
                     return
         
 
-        file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+        file_do = input("\nr - read\nw - rewrite\na - to add\nq - out\n>>> ").lower()
         print("\033c", end="")  # ANSI escape code для очищення екрану
         while True:
             if file_do == "r":
                 content = file_path.read_text(encoding='utf-8')
                 print("\n",content)
-                file_do = input("\nr - read\nw - rewrite\nq - out\n>>> ").lower()
+                file_do = input("\nr - read\nw - rewrite\na - to add\nq - out\n>>> ").lower()
             elif file_do == "q":
                 break
             elif file_do == "w":
@@ -109,9 +109,17 @@ def open_file():
                 print("file rewrited!")
                 time.sleep(1)
                 break
+            elif file_do == "a":
+                content = file_path.read_text(encoding='utf-8')
+                with open(file_path, 'w') as file:
+                    content += input(content)
+                    file.write(content)
+                print("\nText Changed")
+                time.sleep(1)
+                break
             else:
                 print("Error, try again!")
-                file_do = input("\nr - read\nw - rewrite\n>>> ").lower()
+                file_do = input("\nr - read\nw - rewrite\na - to add\nq - out\n>>> ").lower()
 
     
 #---------PROCES-----------#
