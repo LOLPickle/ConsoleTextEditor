@@ -6,8 +6,8 @@ A simple Python console text editor -> TEXTER
 
 # Comming soon 🛠️
 
-✔️ Automatically adding .txt to the file name when searching for it
-✔️ Fix bugs
+✔Automatically adding .txt to the file name when searching for it
+✔Fix bugs
 - Adding a function to add text instead of just overwriting
 - Version PLUS whith UI
 - And more...
